@@ -5,7 +5,7 @@
   "license": "MIT",
   "main": "index.ts",
   "scripts": {
-    "start": "nodemon index.ts"
+    "start": "nodemon app.js"
   },
   "keywords": [],
   "author": "Group 17",
