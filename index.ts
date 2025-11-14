@@ -3,7 +3,7 @@ const app = express();
 const port = 3000;
 
 app.get("/", (req, res) => {
-  res.sendFile("public/index.html", {root: __dirname});
+  res.sendFile("public/index.html", { root: __dirname });
 });
 
 app.listen(port, () => {
@@ -12,3 +12,8 @@ app.listen(port, () => {
 
 app.use(express.static("public"));
 
+app.set("view engine", "ejs");
+
+app.get("/", (req, res) => {
+  res.render("index");
+});
