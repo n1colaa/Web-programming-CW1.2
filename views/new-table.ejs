@@ -1,22 +1,4 @@
-<DOCTYPE html>
-    <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&family=Rationale&display=swap" rel="stylesheet">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>New Table Reservation</title>
-    </head>
-    <body >
-    <div class="topnav" >
-        <img id="logo" src="logo.png">
-        <a href="contact.html">Contact</a>
-        <a href="booking.html">Booking</a>
-        <a href="Menu.html">Cafe-Menu</a>
-        <a class="active" href="index.html">Home</a>
-    </div>
-
+<%- include("header") -%>
     <br>
     <h1 style="text-align: center; font-size: 9vw; ">New Table Reservation</h1>
         <div style="padding:5vw; background-color:#0C0C0C; border:0.4vw solid; border-color:grey;">
@@ -48,19 +30,8 @@
             </form>
         </div>
 
-    <div class="footer" style="text-align: center;">
-        <h2>FOLLOW US ON SOCIAL MEDIA!</h2>
-        <div class="socials">
-            <a href="https://www.tiktok.com" style="text-decoration: none" target="_blank" ><img src="tiktok.png" width="30%"> </a>
-            <a href="http://www.youtube.com" style="text-decoration: none" target="_blank" ><img id="yt" src="yt.png" width=46vw> </a>
-            <a href="https://instagram.com"  style="text-decoration: none" target="_blank" ><img src="insta.png" width="30%"> </a>
-        </div>
-    </div>
+<%= document.getElementById("date").min = new Date().toISOString().split("T")[0]; %>
 
-    <script>
-        document.getElementById("date").min = new Date().toISOString().split("T")[0];
-    </script>
+<%-include("footer") -%>
 
-    </body>
-    </html>
-</DOCTYPE>
+
