@@ -33,6 +33,10 @@ app.get('/new-table', (req, res) => {
     res.render('new-table'); 
 });
 
+app.get('/log-in', (req, res) => {
+    res.render('log-in');
+});
+
 app.listen(port, () => {
   console.log(`Sandbox listening on port ${port}`);
 });

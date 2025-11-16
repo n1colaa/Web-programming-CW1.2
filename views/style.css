@@ -1,5 +1,5 @@
 body {
-  height 100%;
+  height: 100%;
   margin: 0;
   background-color: black;
   display: flex;
@@ -98,7 +98,7 @@ p{
   padding: 1vw 2vw;
   text-align: center;
   font-size: 3vw;
-  font-family: quantico
+  font-family: quantico;
   opacity: 1;
   transition: 0.3s;
   display: inline-block;
@@ -135,7 +135,7 @@ p{
 }
 
 .booking-button:hover {
-    color: blue;
+    color:green;
 }
 
 .contact-message {
@@ -156,10 +156,27 @@ p{
     color:white;
 }
 
+
+.login-form{
+    width:35vw;
+    font-family: "Ariel", sans-serif;
+    font-size:2vw;
+    background-color: #0C0C0C;
+    color:white;
+}
+
 label{
     font-size:3vw;
     font-family: "Rationale", sans-serif;
     padding:0.5vw;
+    color:white;
+}
+
+#my-label{
+    font-size:3vw;
+    font-family: "Rationale", sans-serif;
+    padding:0.5vw;
+    color:white;
 }
 
 .normal{
