@@ -30,14 +30,12 @@ function queryDatabase(query, callback) {
 pool.getConnection(function(err, con){
   if (err) throw err;
   console.log("Connected");
-//  let sql = "CREATE TABLE reservation (name VARCHAR(255), partySize INT(20), bookingDate DATE, bookingTime )
+    con.query("CREATE TABLE IF NOT EXISTS reservation(name VARCHAR(255), partySize INT(1), bookingDate VARCHAR(10), bookingTime VARCHAR(5), phoneNum VARCHAR(10), email VARCHAR(255), PRIMARY KEY (email))", (err)=>{
+        con.release();
+        if (err) throw err;
+        console.log("Created table");
+    })
 })
-
-pool.query("CREATE TABLE IF NOT EXISTS reservation(name VARCHAR(255), partySize INT(1), bookingDate VARCHAR(10), bookingTime VARCHAR(5), phoneNum VARCHAR(10), email VARCHAR(255), PRIMARY KEY (email))", (err)=>{
-  if (err) throw err;
-  console.log("Created table");
-})
-
 
 router.post("/booking.html", function (req, res,) {
     console.log(req.fname);
