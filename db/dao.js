@@ -47,7 +47,7 @@ router.post("/booking.html", function (req, res,) {
     pool.getConnection(function (err, con) {
       if (err) throw err;
       console.log("Connected");
-        const sql = "INSERT INTO reservation (name, partySize, bookingDate , bookingTime, bookingTime, phoneNum, email) VALUES (req.fname, req.size, req.date, req.time, req.contactNum, req.email)";
+        const sql = "INSERT INTO reservation (name, partySize, bookingDate , bookingTime, phoneNum, email) VALUES (req.fname, req.size, req.date, req.time, req.contactNum, req.email)";
         con.query(sql, function (err, result){
             con.release();
             if (err) throw err;
