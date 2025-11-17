@@ -1,12 +1,12 @@
 const mysql = require("mysql");
-var express = require("express");
-var router = express.Router();
-var pool = mysql.createPool({
-  connectionLimit: 100,
-  host: "sql8.freesqldatabase.com",
-  user: "sql8807974",
-  password: "HkHxHIDR42",
-  debug: false,
+const express = require("express");
+const router = express.Router();
+const pool = mysql.createPool({
+    connectionLimit: 100,
+    host: "sql8.freesqldatabase.com",
+    user: "sql8807974",
+    password: "HkHxHIDR42",
+    debug: false,
 });
 
 function queryDatabase(query, callback) {
@@ -27,22 +27,33 @@ function queryDatabase(query, callback) {
   });
 }
 
-con.connect(function(err){
+pool.getConnection(function(err, con){
   if (err) throw err;
   console.log("Connected");
-  let sql = "CREATE TABLE reservation (name VARCHAR(255), partySize INT(20), bookingDate DATE, bookingTime )
+//  let sql = "CREATE TABLE reservation (name VARCHAR(255), partySize INT(20), bookingDate DATE, bookingTime )
 })
 
-router.post("/booking.html", function (req, res, next) {
+pool.query("CREATE TABLE IF NOT EXISTS reservation(name VARCHAR(255), partySize INT(1), bookingDate VARCHAR(10), bookingTime VARCHAR(5), phoneNum VARCHAR(10), email VARCHAR(255), PRIMARY KEY (email))", (err)=>{
+  if (err) throw err;
+  console.log("Created table");
+})
+
+
+router.post("/booking.html", function (req, res,) {
     console.log(req.fname);
     console.log(req.size);
     console.log(req.date);
     console.log(req.time);
     console.log(req.contactNum);
     console.log(req.email);
-    con.connect(function (err) {
+    pool.getConnection(function (err, con) {
       if (err) throw err;
       console.log("Connected");
-      var sql = Insert;
+        const sql = "INSERT INTO reservation (name, partySize, bookingDate , bookingTime, bookingTime, phoneNum, email) VALUES (req.fname, req.size, req.date, req.time, req.contactNum, req.email)";
+        con.query(sql, function (err, result){
+            con.release();
+            if (err) throw err;
+            console.log("1 record inserted!");
+        })
     });
   });

@@ -22,10 +22,6 @@ app.set("view engine", "ejs");
 
 
 app.get("/", (req, res) => {
-  res.sendFile("public/index.html", { root: __dirname });
-});
-
-app.get("/", (req, res) => {
   res.render("index");
 });
 
@@ -37,8 +33,8 @@ app.get('/log-in', (req, res) => {
     res.render('log-in');
 });
 
-app.listen(port, () => {
-  console.log(`Sandbox listening on port ${port}`);
+app.listen(port, "0.0.0.0", () => {
+  console.log(`Sandbox listening on http://0.0.0.0:${port}`);
 });
 
 
