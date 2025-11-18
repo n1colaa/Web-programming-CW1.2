@@ -49,22 +49,29 @@ pool.getConnection(function(err, con){
 })
 
 app.post("/register", (req, res) => {
-       console.log(req.body.fname);
-//    console.log(req.body.size);
-  //  console.log(req.body.date);
-    //console.log(req.body.time);
-   // console.log(req.body.contactNum);
+    console.log(req.body.fname);
+    console.log(req.body.size);
+    console.log(req.body.date);
+    console.log(req.body.time);
+    console.log(req.body.contactNum);
     console.log(req.body.email);
     pool.getConnection(function (err, con) {
         if (err) throw err;
         console.log("Connected");
-//        const sql = "INSERT INTO reservation (name, partySize, bookingDate , bookingTime, phoneNum, Email) VALUES ({req.fname}, '${req.size}', '${req.date}', '${req.time}', '${req.contactNum}', '${req.email}')";
-//
-  //      con.query(sql, function (err, result){
-    //        con.release();
-      //      if (err) throw err;
-        //    console.log("1 record inserted!");
-       // })
+        const sql = "INSERT INTO reservation (name, partySize, bookingDate , bookingTime, phoneNum, Email) VALUES (?)";
+        const values = [
+            req.body.fname,
+            req.body.size,
+            req.body.date,
+            req.body.time,
+            req.body.contactNum,
+            req.body.email
+        ]
+        con.query(sql,[values], function (err, result){
+            con.release();
+            if (err) throw err;
+            console.log("1 record inserted!");
+        })
     });
 });
 
