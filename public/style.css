@@ -29,7 +29,7 @@ p{
     font-weight: 400;
     font-style: normal;
     font-size: 3.5vw;
-    color: white
+    color: white;
 }
 
 
@@ -54,7 +54,7 @@ p{
 }
 
 .topnav a.active {
-  color: #CD5C5C;
+  color: #cd5c5c;
 }
 
 #logo{
@@ -135,7 +135,7 @@ p{
 }
 
 .booking-button:hover {
-    color: blue;
+    color: green;
 }
 
 .contact-message {
@@ -176,3 +176,56 @@ label{
      display: inline-flex; /* aligns images */
      justify-content: center; /* centers the logos*/
 }
+
+@media (max-width: 768px) {
+.topnav {
+  overflow: hidden;
+    background-color: black;
+    height: 6vw;
+}
+
+.topnav a {
+  float: right;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 1vw 6vw 1vw;
+  text-decoration: none;
+  font-size: 3vw;
+  font-family: rationale;
+}
+
+.topnav a:hover {
+  color: orange;
+}
+
+.topnav a.active {
+  color: #cd5c5c;
+}
+.menu{
+  background-color: #221F1F; 
+  padding: 8vm; 
+  border-radius: 10vw; 
+  width: 700px; 
+}
+
+.menu-item{
+  border-bottom: 2px solid #EA663E; 
+  padding-bottom: 16px;
+}
+
+.menu-container{
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  flex-direction: column; 
+  text-align: center;
+}
+
+#logo{
+    padding-left: 1vw;
+    width: 19vw;
+}
+}
+
+
+
