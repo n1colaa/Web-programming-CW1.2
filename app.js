@@ -85,7 +85,7 @@ app.post("/register", (req, res) => {
     console.log("Connected");
 
     const sql =
-      "INSERT INTO reservation (name, partySize, bookingDate , bookingTime, phoneNum, Email) VALUES (?)";
+      "INSERT INTO reservation (name, partySize, bookingDate , bookingTime, phoneNum, email) VALUES (?)";
 
     const values = [
       req.body.fname,
@@ -107,6 +107,32 @@ app.post("/register", (req, res) => {
     });
   });
 });
+
+
+app.post("/sign-in", (req, res, next) => {
+    const sql1 = "SELECT * FROM reservation WHERE email = ?";
+    pool.getConnection(function (err, con) {
+        if (err){
+            return res.json(err);
+        }
+        con.query(sql1 ,req.body.email, (err, data) => {
+          con.release();
+          if (err){
+              return res.json(err);
+          }
+          if(data.length > 0){
+              res.render("results")
+          }else{
+             res.render("log-in",{message: "Email not found"});
+          }
+        })
+    })
+});
+
+
+function middleware1(req, res, next) {
+}
+
 
 //serves static files from the public directory
 app.use(express.static("public"));
