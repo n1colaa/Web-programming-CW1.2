@@ -138,31 +138,31 @@ app.post("/sign-in", (req, res) => {
                 res.render("results", items);
 
             }else{
-                res.render("log-in",{message: "Email not found"});
+                res.render("invalid-email");
             }
         })
     })
 });
 
-    app.post("/delete", (req, res) => {
-        const sql2 = "DELETE FROM reservation WHERE email = ?";
-        pool.getConnection(function (err, con) {
+app.post("/delete", (req, res) => {
+    const sql2 = "DELETE FROM reservation WHERE email = ?";
+    pool.getConnection(function (err, con) {
+        if (err) {
+            return res.json(err);
+        }
+        con.query(sql2, req.body.email, (err, data) => {
+            con.release();
             if (err) {
                 return res.json(err);
+            }else if (data.length > 0){
+                res.render("deletion");
+            } else {
+                res.render("invalid-email");
             }
-            con.query(sql2, req.body.email, (err, data) => {
-                con.release();
-                if (err) {
-                    return res.json(err);
-                }else if (data.length < 0){
-                    res.render("results");
-                } else {
-                    res.render("deletion");
-                }
-            });
         });
-
     });
+
+});
 
 
 
@@ -181,7 +181,7 @@ app.post("/change", (req, res) => {
             if (err) {
                 return res.json(err);
             }else if (data.length < 0){
-                res.render("email-change");
+                res.render("invalid-email");
             } else {
                 res.render("change-successful");
             }
