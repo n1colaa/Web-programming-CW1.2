@@ -1,7 +1,17 @@
 <%- include("header") -%>
-<div class="container" style="padding: 8vw;">
-<h1> Your Booking is at  <%= date %> at <%= time %></h1>
-    <a href="/log-in" class="home-button">Cancel Reservation</a>
+<div class="container" style="padding: 2vw;">
+<h1>Hello <%= fullName %> </h1>
+<p> Your Booking is at  <%= date %> at <%= time %></p>
+    <form action = "/edit-details" method="POST">
+        <input class="home-button" style="padding: 1vw 3vw" type="submit" value="EDIT DETAILS" />
+    </form>
+    <h2>or</h2>
+    <h1>Cancel Reservation </h1>
+    <form action = "/delete" method="POST">
+        <label style for="email">Re-enter your email:</label><br />
+            <input class="contact-form" type="email" id="email" name="email" required /> <br>
+        <input class="home-button" style="padding: 2vw 8vw; background-color: #841623" type="submit" value="CANCEL RESERVATION" />
+    </form>
 </div>
 
 </body>

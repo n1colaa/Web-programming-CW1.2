@@ -18,6 +18,7 @@ const port = process.env.PORT || 3000;
 //mysql driver
 const mysql = require("mysql");
 const http = require("http");
+const {it} = require("node:test");
 
 //creates a basic http server
 const server = http.createServer(function (req, res) {
@@ -116,9 +117,8 @@ app.post("/register", (req, res) => {
 });
 
 
-app.post("/sign-in", (req, res, next) => {
+app.post("/sign-in", (req, res) => {
     const sql1 = "SELECT * FROM reservation WHERE email = ?";
-    const sql2 = "SELECT bookingDate, bookingTime FROM reservation WHERE email = ?";
     pool.getConnection(function (err, con) {
         if (err){
             return res.json(err);
@@ -130,11 +130,12 @@ app.post("/sign-in", (req, res, next) => {
             }
             if(data.length > 0){
                 const items = {
-                date:data[0].bookingDate,
-                time:data[0].bookingTime,
-                }
+                    fullName: data[0].name,
+                    theEmail: req.body.email,
+                    date: data[0].bookingDate,
+                    time: data[0].bookingTime
+                };
                 res.render("results", items);
-
 
             }else{
                 res.render("log-in",{message: "Email not found"});
@@ -143,9 +144,26 @@ app.post("/sign-in", (req, res, next) => {
     })
 });
 
+    app.post("/delete", (req, res) => {
+        const sql2 = "DELETE FROM reservation WHERE email = ?";
+        pool.getConnection(function (err, con) {
+            if (err) {
+                return res.json(err);
+            }
+            con.query(sql2, req.body.email, (err, data) => {
+                if (err) {
+                    return res.json(err);
+                }else if (data.length < 0){
+                    res.render("results");
+                } else {
+                    res.render("deletion");
+                }
+            });
+        });
 
-function middleware1(req, res, next) {
-}
+    });
+
+
 
 
 
